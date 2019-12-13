@@ -414,6 +414,22 @@ ScrollMagic.Controller = function(options) {
 	};
 
 	/**
+	 * Force refresh to all scenes. This is needed especially when setting up the Controller with refreshInterval set to 0.
+	 * @public
+	 * @example
+	 * // update the controller on next cycle (saves performance due to elimination of redundant updates)
+	 * controller.forceRefreshScenes();
+	 *
+	 * @return {Controller} Parent object for chaining.
+	 */
+	this.forceRefreshScenes = function() {
+		_sceneObjects.forEach(function (scene, index) { // refresh all scenes
+			scene.refresh();
+		});
+		return Controller;
+	};
+
+	/**
 	 * Scroll to a numeric scroll offset, a DOM element, the start of a scene or provide an alternate method for scrolling.  
 	 * For vertical controllers it will change the top scroll offset and for horizontal applications it will change the left offset.
 	 * @public
